@@ -1,13 +1,4 @@
 #Author: DavidBAEK
-'''/home/username; shell/bin/bash; chgMdpTemp@1stLogin;
-
-root@vmubuntu:/home/adminhba/PycharmProjects/adminsys# python3 adduserfromfile.py userlist
-passwd: password expiry information changed.
-passwd: password expiry information changed.
-root@vmubuntu:/home/adminhba/PycharmProjects/adminsys#
-
-
-'''
 
 import subprocess,traceback,sys,getpass,string,random
 import pandas as pd
@@ -29,8 +20,18 @@ with open(filename, "r") as f:
         #     , columns=['group', 'group_id', 'membre_list'])
         # df = df.append(n)
         # df.to_csv('userlist.csv', sep=';', index=False)
+    '''/home/username; shell/bin/bash; chgMdpTemp@1stLogin;
+    
+    root@vmubuntu:/home/adminhba/PycharmProjects/adminsys# python3 adduserfromfile.py userlist
+    passwd: password expiry information changed.
+    passwd: password expiry information changed.
+    root@vmubuntu:/home/adminhba/PycharmProjects/adminsys#
+    
+  
+    '''
 
-#exécution de la commande useradd via le module subprocess
+    #exécution de la commande useradd via le module subprocess
+  # SUID et GUID et Stickybit
 def user_add(username, user_dir=None):
     if user_dir:
         cmd = ["sudo", "useradd", "-d", user_dir, "-m", username]
@@ -63,28 +64,21 @@ pw_cadidate = string.ascii_letters + string.digits + string.punctuation
 
 temp_pw = ""
 for i in range(temp_pw_len):
-    temp_pw += random.choice(pw_cadidate)
+    temp_pw += random.choice(pw_cadidate) #generate temporary password
 
 print("\nTemporary password", temp_pw)
-'''
-adminhba@vmubuntu:~$ su - Marcelo
-Password:
-You are required to change your password immediately (administrator enforced).
-Changing password for Marcelo.
-Current password:
-New password:
-Retype new password:
-Marcelo@vmubuntu:~$'''
 
+# en utilisant subprocess.Popen
 def input_passwd():
-    mesg = "Password: "
-    print "You are required to change your password immediately (administrator enforced)."
-    old = getpass.getpass("Current %s" % mesg)
-    new = getpass.getpass("New %s" % mesg)
-    re_new = getpass.getpass("Retype New %s" % mesg)
-
-    if new != re_new:
-        print "New RandomString does not match."
-        exit(1)
-
-    return old, new'''
+    # mesg = "Password: "
+    # print "You are required to change your password immediately (administrator enforced)."
+    # old = getpass.getpass("Current %s" % mesg)
+    # new = getpass.getpass("New %s" % mesg)
+    # re_new = getpass.getpass("Retype New %s" % mesg)
+    #
+    # if new != re_new:
+    #     print "New RandomString does not match."
+    #     exit(1)
+    #
+    # return old, new'''
+'# en utilisant passwd --expire user
